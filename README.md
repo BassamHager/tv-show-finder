@@ -1,6 +1,20 @@
 ## TV Show Finder
 
 ## Draft
+### How to Install & to Run the App
+- Create a local folder
+- Open the termainal & navigate to the created folder
+- Run the following commands respectively
+```
+$ git clone https://github.com/BassamHajar/tv-show-finder.git .
+```
+```
+$ npm i
+```
+```
+$ npm run dev
+```
+---
 
 ### General Todos
 
@@ -75,3 +89,4 @@ installed tools & dependencies
 - closeMenu
 - clear console warnings
 - toggle body scrolling when submenu is opened
+- update README.md file with how to install & run the app
