@@ -57,7 +57,8 @@ body {
 
 .app {
   background: linear-gradient(90deg, #000851 0%, #1cb5e0 100%);
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   padding: 0 1rem;
 
   .main {
@@ -69,5 +70,11 @@ body {
     max-width: 117rem;
     margin: 0 auto;
   }
+}
+
+.toggleBodyScroll {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
 }
 </style>
