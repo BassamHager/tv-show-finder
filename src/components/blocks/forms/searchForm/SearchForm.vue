@@ -20,14 +20,12 @@ export default defineComponent({
   components: {
     SearchBar,
   },
-  setup() {
+  setup(_, { emit }) {
     // data
     const searchTerm = ref("");
 
     // methods
-    const submitSearch = () => {
-      console.log("term:::", searchTerm.value);
-    };
+    const submitSearch = () => emit("emitSearchTerm", searchTerm.value);
 
     onMounted(() => {
       const searchInput = document.querySelector("#search-input");

@@ -1,13 +1,13 @@
-import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+import HomePage from "../views/HomePage.vue";
+import AboutPage from "../views/AboutPage.vue";
 
 export default [
   {
     path: "/",
-    component: Home,
+    component: HomePage,
   },
   {
     path: "/about",
-    component: About,
+    component: AboutPage,
   },
 ];
