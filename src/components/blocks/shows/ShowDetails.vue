@@ -31,7 +31,7 @@
 import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
 // components
-import BaseButton from "../components/atoms/button/BaseButton.vue";
+import BaseButton from "../../atoms/button/BaseButton.vue";
 
 export default defineComponent({
   name: "ShowDetails",
