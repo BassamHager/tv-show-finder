@@ -1,19 +1,30 @@
 ## TV Show Finder
 
+## Demo
+
+Latest update - screenshot
+![app homepage screenshot](src/assets/tv-show-finder-bg.jpg)
+
 ## Draft
+
 ### How to Install & to Run the App
+
 - Create a local folder
 - Open the termainal & navigate to the created folder
 - Run the following commands respectively
+
 ```
 $ git clone https://github.com/BassamHajar/tv-show-finder.git .
 ```
+
 ```
 $ npm i
 ```
+
 ```
 $ npm run dev
 ```
+
 ---
 
 ### General Todos
