@@ -2,15 +2,21 @@
   <main class="home-page">
     <SearchForm @emitSearchTerm="searchShows" />
 
-    <!-- searched & found shows -->
-    <ShowList
+    <!-- auto fetched showList -->
+    <AutoFetchedShowList
+      :selectShow="selectShow"
+      @emitClickedShowCardId="getClickedShowCardId"
+    />
+
+    <!-- searched & found showList -->
+    <FoundShowList
       v-if="!isSelectedShow"
       :foundShows="foundShows"
       @emitSelectedShow="selectShow"
     />
 
     <!-- clicked show details -->
-    <ShowDetailsPage
+    <ShowDetails
       v-else
       :showDetails="selectedShow"
       :isSelectedShow="isSelectedShow"
@@ -24,15 +30,17 @@
 import { computed, defineComponent, ref } from "vue";
 // components
 import SearchForm from "../components/blocks/forms/searchForm/SearchForm.vue";
-import ShowList from "../components/blocks/shows/ShowList.vue";
-import ShowDetailsPage from "./ShowDetailsPage.vue";
+import AutoFetchedShowList from "../components/blocks/shows/AutoFetchedShowList.vue";
+import FoundShowList from "../components/blocks/shows/FoundShowList.vue";
+import ShowDetails from "../components/blocks/shows/ShowDetails.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
     SearchForm,
-    ShowList,
-    ShowDetailsPage,
+    AutoFetchedShowList,
+    FoundShowList,
+    ShowDetails,
   },
 
   props: {
@@ -51,9 +59,14 @@ export default defineComponent({
       required: true,
       default: () => {},
     },
+    selectShow: {
+      type: Function,
+      required: true,
+      default: () => {},
+    },
   },
 
-  setup() {
+  setup(_, { emit }) {
     // data
     const foundShows = ref([]);
     const selectedShow = ref({});
@@ -77,9 +90,21 @@ export default defineComponent({
       }
     };
 
-    const selectShow = (show) => {
-      selectedShow.value = show;
-      isSelectedShow.value = true;
+    // const selectShow = (show) => {
+    //   selectedShow.value = show;
+    //   isSelectedShow.value = true;
+    // };
+
+    const getClickedShowCardId = (clickedShowId, source) => {
+      if (source === "autoFetch") {
+        const selected = shows.find((show) => show.show.id === clickedShowId);
+      }
+    };
+
+    const selectShow = (shows, clickedShowId) => {
+      const selected = shows.find((show) => show.show.id === clickedShowId);
+
+      emit("emitSelectedShow", selected.show);
     };
 
     const backToHome = () => (isSelectedShow.value = false);

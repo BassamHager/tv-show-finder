@@ -1,10 +1,6 @@
 <template>
-  <div
-    v-for="{ show } in shows"
-    :key="show.id"
-    @click.prevent="selectShow(show.id)"
-    class="show-card"
-  >
+  <!-- v-for="{ show } in shows" -->
+  <div :key="show.id" @click="getClickedShowCardId(show.id)" class="show-card">
     <h2 class="show-title">
       {{ show.name }}
     </h2>
@@ -19,23 +15,46 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "Card",
   props: {
-    shows: {
-      type: Array,
+    show: {
+      type: Object,
       required: true,
-      default: [],
+      default: {},
     },
-    selectShow: {
-      type: Function,
-      required: true,
-      default: () => {},
+    source: {
+      type: String,
+      required: false,
+      default: "",
     },
+    // shows: {
+    //   type: Array,
+    //   required: true,
+    //   default: [],
+    // },
+    // selectShow: {
+    //   type: Function,
+    //   required: true,
+    //   default: () => {},
+    // },
   },
-  setup() {},
+
+  setup(props, { emit }) {
+    // data
+    const showCardId = ref("");
+
+    // methods
+    const getClickedShowCardId = (id) => (showCardId.value = id);
+    const emitClickedShowCardId = () =>
+      emit("emitClickedShowCardId", showCardId.value, props.source);
+
+    return {
+      getClickedShowCardId,
+    };
+  },
 });
 </script>
 
@@ -65,6 +84,7 @@ export default defineComponent({
     box-shadow: none;
     background: rgba($color: #000000, $alpha: 0.3);
     transition: 0.5s all ease-in-out;
+    border-color: #fff;
 
     .show-title {
       color: gold;
