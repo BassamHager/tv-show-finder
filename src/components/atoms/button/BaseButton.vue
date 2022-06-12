@@ -65,6 +65,11 @@ button.base-button {
   &:focus {
     outline: none;
   }
+
+  &:hover {
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
 }
 
 .main-button-bg {

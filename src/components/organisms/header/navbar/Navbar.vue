@@ -52,6 +52,16 @@ export default defineComponent({
     // methods
     const toggleMenu = (open) => {
       isOpen.value = open;
+
+      // toggle body scroll
+      toggleBodyScroll();
+    };
+
+    const toggleBodyScroll = () => {
+      const bodyClasses = document.body.classList;
+      isOpen.value
+        ? bodyClasses.add("toggleBodyScroll")
+        : bodyClasses.remove("toggleBodyScroll");
     };
 
     return {
